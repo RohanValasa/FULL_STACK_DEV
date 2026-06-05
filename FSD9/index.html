@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RCE</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-light shadow-sm">
+        <div class="container-fluid">
+            <a class= "navbar-brand" href="#">
+                <img src="cvrlogo.png" alt="logo" class="college-logo">
+            </a>
+            <span class="mx-auto college-title">
+                Student Management Portal
+            </span>
+            <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarMenu">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="dashboard.html" class="nav-link">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">Contact</a>
+                    </li>
+                     <li class="nav-item mt-2 mt-lg-0 ms-lg-3">
+                    <a class="btn btn-primary login-btn" href="#">
+                        Login
+                    </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+    </nav>
+
+
+    <!-- Hero Section -->
+    <div class="container text-center my-5">
+
+    <h1 class="display-5 fw-bold">
+        Welcome to Student Management Portal
+    </h1>
+
+    <p class="lead text-muted mt-3">
+        Empowering students with quality education, innovative learning,
+        and excellent career opportunities. Manage courses, track progress,
+        and stay connected with your academic journey.
+    </p>
+
+    <a href="registration.html" class="btn btn-success btn-lg mt-3 register-btn">
+        Register Now
+    </a>
+
+    </div>
+
+    <!-- Features Section -->
+<div class="container my-5">
+
+    <h2 class="text-center mb-4">Our Features</h2>
+
+    <div class="row g-4">
+
+        <!-- Card 1 -->
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm feature-card">
+                <img src="student.png" class="card-img-top" alt="Student Registration">
+
+                <div class="card-body">
+                    <h5 class="card-title">Student Registration</h5>
+
+                    <p class="card-text">
+                        Register students efficiently and maintain their academic records.
+                    </p>
+
+                    <a href="#" class="btn btn-primary">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm feature-card">
+                <img src="attendance.png" class="card-img-top" alt="Attendance">
+
+                <div class="card-body">
+                    <h5 class="card-title">Attendance Management</h5>
+
+                    <p class="card-text">
+                        Monitor and track student attendance with ease.
+                    </p>
+
+                    <a href="#" class="btn btn-success">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm feature-card">
+                <img src="results.png" class="card-img-top" alt="Results">
+
+                <div class="card-body">
+                    <h5 class="card-title">Results Management</h5>
+
+                    <p class="card-text">
+                        Publish and manage examination results securely.
+                    </p>
+
+                    <a href="#" class="btn btn-warning">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<footer class="bg-dark text-white text-center p-4 mt-5">
+
+    <h5>Student Management Portal</h5>
+
+    <p>&copy; 2026 All Rights Reserved</p>
+
+    <div>
+        <a href="#" class="text-white me-3">Facebook</a>
+        <a href="#" class="text-white me-3">Instagram</a>
+        <a href="#" class="text-white">LinkedIn</a>
+    </div>
+
+</footer>
+</body>
+</html>
