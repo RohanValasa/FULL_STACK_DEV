@@ -1,0 +1,3 @@
+Node.js uses asynchronous (non-blocking) programming.
+This means it can keep working while waiting for tasks like reading files or talking to a database.
+With asynchronous code, Node.js can handle many things at once-making it fast and efficient.
