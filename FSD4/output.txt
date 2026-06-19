@@ -1,0 +1,263 @@
+mysql> SELECT * FROM Users;
++---------+--------------+-------------------+-----------+-------------------+
+| user_id | full_name    | email             | city      | registration_date |
++---------+--------------+-------------------+-----------+-------------------+
+|       1 | Rohan Valasa | rohan@gmail.com   | Hyderabad | 2026-01-15        |
+|       2 | Rahul Sharma | rahul@gmail.com   | Bangalore | 2026-01-18        |
+|       3 | Priya Reddy  | priya@gmail.com   | Chennai   | 2026-02-01        |
+|       4 | Arjun Kumar  | arjun@gmail.com   | Mumbai    | 2026-02-10        |
+|       5 | Sneha Patel  | sneha@gmail.com   | Mumbai    | 2026-02-15        |
+|       6 | Vikram Singh | vikram@gmail.com  | Delhi     | 2026-03-05        |
+|       7 | Ananya Rao   | ananya@gmail.com  | Pune      | 2026-03-12        |
+|       8 | Karthik Nair | karthik@gmail.com | Mumbai    | 2026-04-01        |
+|       9 | Meera Joshi  | meera@gmail.com   | Pune      | 2026-04-20        |
+|      10 | Aditya Verma | aditya@gmail.com  | Hyderabad | 2026-05-10        |
++---------+--------------+-------------------+-----------+-------------------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT full_name FROM Users WHERE registration_date >= CURDATE() - INTERVAL 30 DAY;
++--------------+
+| full_name    |
++--------------+
+| Aditya Verma |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT full_name FROM Users WHERE registration_date >= '2026-04-29';
++--------------+
+| full_name    |
++--------------+
+| Aditya Verma |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT full_name FROM Users ORDER BY registration_date;
++--------------+
+| full_name    |
++--------------+
+| Rohan Valasa |
+| Rahul Sharma |
+| Priya Reddy  |
+| Arjun Kumar  |
+| Sneha Patel  |
+| Vikram Singh |
+| Ananya Rao   |
+| Karthik Nair |
+| Meera Joshi  |
+| Aditya Verma |
++--------------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT full_name FROM Users ORDER BY registration_date DESC;
++--------------+
+| full_name    |
++--------------+
+| Aditya Verma |
+| Meera Joshi  |
+| Karthik Nair |
+| Ananya Rao   |
+| Vikram Singh |
+| Sneha Patel  |
+| Arjun Kumar  |
+| Priya Reddy  |
+| Rahul Sharma |
+| Rohan Valasa |
++--------------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT COUNT(full_name) FROM Users GROUP BY city;
++------------------+
+| COUNT(full_name) |
++------------------+
+|                2 |
+|                1 |
+|                1 |
+|                3 |
+|                1 |
+|                2 |
++------------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT city,COUNT(full_name) FROM Users GROUP BY city;
++-----------+------------------+
+| city      | COUNT(full_name) |
++-----------+------------------+
+| Hyderabad |                2 |
+| Bangalore |                1 |
+| Chennai   |                1 |
+| Mumbai    |                3 |
+| Delhi     |                1 |
+| Pune      |                2 |
++-----------+------------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT city FROM Users GROUP BY city HAVING COUNT(*) > 5	;
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM Users WHERE full_name LIKE 'A%';
++---------+--------------+------------------+-----------+-------------------+
+| user_id | full_name    | email            | city      | registration_date |
++---------+--------------+------------------+-----------+-------------------+
+|       4 | Arjun Kumar  | arjun@gmail.com  | Mumbai    | 2026-02-10        |
+|       7 | Ananya Rao   | ananya@gmail.com | Pune      | 2026-03-12        |
+|      10 | Aditya Verma | aditya@gmail.com | Hyderabad | 2026-05-10        |
++---------+--------------+------------------+-----------+-------------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT city FROM Users GROUP BY city HAVING COUNT(*) > 1;
++-----------+
+| city      |
++-----------+
+| Hyderabad |
+| Mumbai    |
+| Pune      |
++-----------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Users WHERE DAYNAME(registration_date) IN ('Sunday','Saturday');
++---------+--------------+------------------+-----------+-------------------+
+| user_id | full_name    | email            | city      | registration_date |
++---------+--------------+------------------+-----------+-------------------+
+|       2 | Rahul Sharma | rahul@gmail.com  | Bangalore | 2026-01-18        |
+|       3 | Priya Reddy  | priya@gmail.com  | Chennai   | 2026-02-01        |
+|       5 | Sneha Patel  | sneha@gmail.com  | Mumbai    | 2026-02-15        |
+|      10 | Aditya Verma | aditya@gmail.com | Hyderabad | 2026-05-10        |
++---------+--------------+------------------+-----------+-------------------+
+4 rows in set (0.01 sec)
+
+mysql> SELECT full_name FROM USERS WHERE registration_date = (SELECT MIN(registration_date) FROM Users);
++--------------+
+| full_name    |
++--------------+
+| Rohan Valasa |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT MONTHNAME(registration_date) AS month, COUNT(*) AS total_users FROM Users GROUP BY MONTH(registration_date);
+ERROR 1055 (42000): Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'fsd_sql.Users.registration_date' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+mysql> SELECT MONTHNAME(registration_date) AS month, COUNT(*) AS total_users FROM Users GROUP BY MONTH(registration_date);SELECT MONTHNAME(registration_date) AS month,
+ERROR 1055 (42000): Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'fsd_sql.Users.registration_date' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+    ->        COUNT(*) AS total_users
+    -> FROM Users
+    -> GROUP BY MONTH(registration_date), MONTHNAME(registration_date)
+    -> ORDER BY MONTH(registration_date);
++----------+-------------+
+| month    | total_users |
++----------+-------------+
+| January  |           2 |
+| February |           3 |
+| March    |           2 |
+| April    |           2 |
+| May      |           1 |
++----------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT MONTHNAME(registration_date) AS month, COUNT(*) AS total_users FROM Users GROUP BY MONTH(registration_date), MONTHNAME(registration_date);
++----------+-------------+
+| month    | total_users |
++----------+-------------+
+| January  |           2 |
+| February |           3 |
+| March    |           2 |
+| April    |           2 |
+| May      |           1 |
++----------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> CREATE TABLE Events(event_id INT PRIMARY KEY, title VARCHAR(200) NOT NULL,description TEXT,city VARCHAR(100) NOT NULL,start_date DATETIME NOT NULL,end_date DATETIME NOT NULL,status ENUM('upcoming','completed','cancelled') ,organizer_id INT,FOREIGN KEY(organizer_id) REFERENCES Users(user_id));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> INSERT INTO Events VALUES
+    -> (101, 'Tech Conference 2026', 'Annual technology conference', 'Hyderabad', '2026-06-10 09:00:00', '2026-06-10 18:00:00', 'upcoming', 1),
+    -> (102, 'AI Workshop', 'Hands-on AI workshop', 'Hyderabad', '2026-05-01 10:00:00', '2026-05-01 17:00:00', 'completed', 2), 
+    -> (103, 'Startup Meetup', 'Networking for entrepreneurs', 'Mumbai', '2026-06-15 14:00:00', '2026-06-15 20:00:00', 'upcoming', 3),
+    -> (104, 'Music Festival', 'Live music performances', 'Mumbai', '2026-04-20 16:00:00', '2026-04-20 23:00:00', 'completed', 4), 
+    -> (105, 'Coding Contest', 'Competitive programming event', 'Hyderabad', '2026-07-05 08:00:00', '2026-07-05 18:00:00', 'upcoming', 5),
+    -> (106, 'Career Fair', 'Job opportunities and networking', 'Delhi', '2026-03-15 09:00:00', '2026-03-15 16:00:00', 'completed', 6),
+    -> (107, 'Data Science Summit', 'Latest trends in DS', 'Pune', '2026-06-25 09:00:00', '2026-06-26 17:00:00', 'upcoming', 7),
+    -> (108, 'Gaming Expo', 'Gaming and esports event', 'Kochi', '2026-02-12 11:00:00', '2026-02-12 20:00:00', 'completed', 8),
+    -> (109, 'Business Seminar', 'Business growth strategies', 'Pune', '2026-01-30 10:00:00', '2026-01-30 15:00:00', 'cancelled', 9), 
+    -> (110, 'Hackathon 2026', '24-hour coding challenge', 'Mumbai', '2026-08-01 09:00:00', '2026-08-02 09:00:00', 'upcoming', 10);
+Query OK, 10 rows affected (0.01 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM Events;
++----------+----------------------+----------------------------------+-----------+---------------------+---------------------+-----------+--------------+
+| event_id | title                | description                      | city      | start_date          | end_date            | status    | organizer_id |
++----------+----------------------+----------------------------------+-----------+---------------------+---------------------+-----------+--------------+
+|      101 | Tech Conference 2026 | Annual technology conference     | Hyderabad | 2026-06-10 09:00:00 | 2026-06-10 18:00:00 | upcoming  |            1 |
+|      102 | AI Workshop          | Hands-on AI workshop             | Hyderabad | 2026-05-01 10:00:00 | 2026-05-01 17:00:00 | completed |            2 |
+|      103 | Startup Meetup       | Networking for entrepreneurs     | Mumbai    | 2026-06-15 14:00:00 | 2026-06-15 20:00:00 | upcoming  |            3 |
+|      104 | Music Festival       | Live music performances          | Mumbai    | 2026-04-20 16:00:00 | 2026-04-20 23:00:00 | completed |            4 |
+|      105 | Coding Contest       | Competitive programming event    | Hyderabad | 2026-07-05 08:00:00 | 2026-07-05 18:00:00 | upcoming  |            5 |
+|      106 | Career Fair          | Job opportunities and networking | Delhi     | 2026-03-15 09:00:00 | 2026-03-15 16:00:00 | completed |            6 |
+|      107 | Data Science Summit  | Latest trends in DS              | Pune      | 2026-06-25 09:00:00 | 2026-06-26 17:00:00 | upcoming  |            7 |
+|      108 | Gaming Expo          | Gaming and esports event         | Kochi     | 2026-02-12 11:00:00 | 2026-02-12 20:00:00 | completed |            8 |
+|      109 | Business Seminar     | Business growth strategies       | Pune      | 2026-01-30 10:00:00 | 2026-01-30 15:00:00 | cancelled |            9 |
+|      110 | Hackathon 2026       | 24-hour coding challenge         | Mumbai    | 2026-08-01 09:00:00 | 2026-08-02 09:00:00 | upcoming  |           10 |
++----------+----------------------+----------------------------------+-----------+---------------------+---------------------+-----------+--------------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT e.title, u.full_name FROM Events e JOIN Users u WHERE e.organizer_id = u.user_id;
++----------------------+--------------+
+| title                | full_name    |
++----------------------+--------------+
+| Tech Conference 2026 | Rohan Valasa |
+| AI Workshop          | Rahul Sharma |
+| Startup Meetup       | Priya Reddy  |
+| Music Festival       | Arjun Kumar  |
+| Coding Contest       | Sneha Patel  |
+| Career Fair          | Vikram Singh |
+| Data Science Summit  | Ananya Rao   |
+| Gaming Expo          | Karthik Nair |
+| Business Seminar     | Meera Joshi  |
+| Hackathon 2026       | Aditya Verma |
++----------------------+--------------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT title FROM Events WHERE status = 'upcoming';
++----------------------+
+| title                |
++----------------------+
+| Tech Conference 2026 |
+| Startup Meetup       |
+| Coding Contest       |
+| Data Science Summit  |
+| Hackathon 2026       |
++----------------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT Users.city,COUNT(title) FROM Users JOIN Events ON Users.user_id = Events.organizer_id GROUP BY Users.city;
++-----------+--------------+
+| city      | COUNT(title) |
++-----------+--------------+
+| Hyderabad |            2 |
+| Bangalore |            1 |
+| Chennai   |            1 |
+| Mumbai    |            3 |
+| Delhi     |            1 |
+| Pune      |            2 |
++-----------+--------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT title FROM Events WHERE DATEDIFF(end_date-start_date) > 2;
+ERROR 1582 (42000): Incorrect parameter count in the call to native function 'DATEDIFF'
+mysql> SELECT title FROM Events WHERE DATEDIFF(end_date,start_date) > 2;
+Empty set (0.00 sec)
+
+mysql> SELECT title FROM Events WHERE DATEDIFF(end_date,start_date) > 1;
+Empty set (0.00 sec)
+
+mysql> SELECT e.title,u.full_name FROM Events e JOIN Users u ON e.organizer_id = u.user_id WHERE u.city = 'Hyderabad' AND e.status = 'completed';
+Empty set (0.00 sec)
+
+mysql> SELECT e.title,u.full_name FROM Events e JOIN Users u ON e.organizer_id = u.user_id WHERE u.city = 'Hyderabad' AND e.status = 'upcoming';
++----------------------+--------------+
+| title                | full_name    |
++----------------------+--------------+
+| Tech Conference 2026 | Rohan Valasa |
+| Hackathon 2026       | Aditya Verma |
++----------------------+--------------+
+2 rows in set (0.00 sec)
+
+mysql> notee

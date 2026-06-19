@@ -1,0 +1,102 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    background-color: #f4f4f4;
+    color: #222;
+}
+
+header{
+    background-color: #667585;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+nav{
+    background-color: #34495e;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a{
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+}
+
+nav a:hover{
+    color: #efcc07;
+}
+
+.container{
+    width: 85%;
+    margin: 20px auto;
+}
+
+.card{
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+input, select, textarea{
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button{
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: #1a252f;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td{
+    border: 1px solid #ccc;
+}
+
+th, td{
+    padding: 12px;
+    text-align: center;
+}
+
+.progress{
+    background: #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 18px;
+}
+
+.progress-bar{
+    background: green;
+    height: 100%;
+}
+
+footer{
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    margin-top: 20px;
+}

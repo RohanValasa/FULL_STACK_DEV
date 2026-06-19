@@ -1,0 +1,230 @@
+body{
+    background-color: bisque;
+}
+
+h1{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.trans_div{
+    display: flex;
+    justify-content: center;
+    margin: 7%;
+}
+
+.trans_div h3{
+    display: flex;
+    justify-content: center;
+}
+
+.div1{
+    height: 100px;
+    width: 100px;
+    border: 1px solid black;
+    transition:  2s ease-in 1ms;
+    margin: 10px;
+    border-radius: 20px;
+    background-color: rgb(255, 255, 255);
+}
+
+.div1:hover{
+    color: blue;
+    height: 200px;
+    background-color: orange;
+}
+
+.div2{
+    height: 100px;
+    width: 100px;
+    border: 1px solid black;
+    transition:  2s ease-out 1ms;
+    margin: 10px;
+    border-radius: 20px;
+    background-color: rgb(255, 255, 255);
+}
+
+.div2:hover{
+    width: 200px;
+    background-color: red;
+}
+
+.div3{
+    height: 100px;
+    width: 100px;
+    border: 1px solid black;
+    transition:  2s ease-in-out 0.2ms;
+    margin: 10px;
+    border-radius: 20px;
+    background-color: rgb(255, 255, 255);
+}
+
+.div3:hover{
+    font-size: larger;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.div4{
+    height: 100px;
+    width: 100px;
+    border: 1px solid black;
+    transition: width 10s ease-in, height 5s ease-out, background-color 4s ease 0.2ms;
+    margin: 10px;
+    border-radius: 20px;
+    background-color: rgb(255, 255, 255);
+}
+
+.div4:hover{
+    font-size: larger;
+    width: 400px;
+    height: 300px;
+    background-color: cyan;
+
+}
+
+.anime_div{
+    display: flex;
+    justify-content: center;
+}
+
+.a1{
+    height: 100px;
+    width: 100px;
+    border: 1px solid black;
+    margin: 10px;
+    animation-name: color-change;
+    animation-duration: 5s;
+    animation-timing-function: ease-in;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+    
+
+}
+
+@keyframes color-change {
+    0%{
+        background-color: red;
+    }
+    25%{
+        background-color: yellow;
+    }
+    50%{
+        background-color: aqua;
+    }
+}
+
+.a2{
+    height: 100px;
+    width: 100px;
+    border: 1px solid black;
+    margin: 10px;
+    animation-name: fading;
+    animation-duration: 2s;
+    animation-timing-function: ease-in;
+    animation-iteration-count: infinite;
+    animation-direction: reverse;
+}
+
+@keyframes fading {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+.a3{
+    height: 100px;
+    width: 100px;
+    border: 1px solid black;
+    margin: 10px;
+    animation-name: slide;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: reverse;
+}
+@keyframes slide{
+    0%,100%{
+        transform: translateY(-100px);
+
+    }
+    50%{
+        transform: translateY(200px);
+    }
+}
+
+.a4{
+    height: 100px;
+    width: 100px;
+    border: 1px solid black;
+    margin: 20px;
+    animation-name: rotation;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
+    animation-iteration-count: infinite;
+    animation-direction: reverse;
+}
+
+@keyframes rotation{
+    from{
+        transform: rotate(360deg);
+        border-radius: 20%;
+    }
+    to{
+        border-radius: 50%;
+    }
+}
+
+
+.x-move{
+    animation: moveX 10s linear infinite;
+}
+
+
+@keyframes moveX{
+    from{
+        transform: translateX(0);
+    }
+    to{
+        transform: translateX(1000px);
+    }
+}
+
+
+.a5{
+    height:100px;
+    width:100px;
+    border-radius:50%;
+    background:white;
+    border:1px solid black;
+    animation: bounceY 5s ease-in-out infinite;
+}
+
+@keyframes bounceY{
+    0%   { transform: translateY(0); }
+
+    10%  { transform: translateY(-150px); }
+    20%  { transform: translateY(0); }
+
+    35%  { transform: translateY(-100px); }
+    50%  { transform: translateY(0); }
+
+    65%  { transform: translateY(-60px); }
+    75%  { transform: translateY(0); }
+
+    85%  { transform: translateY(-30px); }
+    92%  { transform: translateY(0); }
+
+    97%  { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+
+
+
+
+
+
+
